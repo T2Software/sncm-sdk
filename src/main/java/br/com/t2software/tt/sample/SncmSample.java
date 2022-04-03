@@ -24,18 +24,23 @@ public class SncmSample {
 		
 		System.out.println("Hello SNCM SDK Samples");
 		
+		// Generate the SNCM Activation Message
 		String xmlActivation = generateMsgEvtInActiv();
 		
 		System.out.println(xmlActivation);
 		
+		// Populate certificate information
 		String certificatePath = "<path to certificate>";
 		String certificatePassword = "<certificate password>";
 		String certificateAlias = "<certificate alias>";
 		
+		// Sign the XML using the ICP Brasil Certificate
 		String signedXML = SignXML.signFile(xmlActivation, certificatePath, certificatePassword, certificateAlias);
 		
+		// Connect to SNCM in one line and get the response
 		String response = SncmConnectionFactory.getEvtIn().loadClientCertificate(certificatePath).setCertificatePassword(certificatePassword).submitEvent(signedXML);
 		
+		// Print the response - Demo Only
 		System.out.println(response);
 	}
 	
