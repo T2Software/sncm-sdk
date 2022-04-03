@@ -21,16 +21,11 @@ import br.gov.anvisa.sncm.v1_00.StakeholderId;
 public class SncmSample {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		System.out.println("Hello SNCM SDK Samples");
-		
-		
+
 		String xmlActivation = generateMsgEvtInActiv();
 		System.out.println(xmlActivation);
-		
-		
-		
 
 	}
 	
