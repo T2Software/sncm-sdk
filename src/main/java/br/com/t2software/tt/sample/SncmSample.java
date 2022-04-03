@@ -3,13 +3,8 @@ package br.com.t2software.tt.sample;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.UUID;
-
 import javax.xml.bind.JAXBElement;
-
-//import java.util.Date.*;
-
 import org.joda.time.DateTime;
-
 import br.com.t2software.tt.util.TransformXML;
 import br.gov.anvisa.sncm.v1_00.Activation;
 import br.gov.anvisa.sncm.v1_00.Dui;
@@ -23,12 +18,9 @@ public class SncmSample {
 	public static void main(String[] args) {
 		
 		System.out.println("Hello SNCM SDK Samples");
-
 		String xmlActivation = generateMsgEvtInActiv();
 		System.out.println(xmlActivation);
-
 	}
-	
 	
 	public static String generateMsgEvtInActiv() {
 
