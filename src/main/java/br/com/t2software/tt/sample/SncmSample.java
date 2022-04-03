@@ -1,10 +1,15 @@
 package br.com.t2software.tt.sample;
 
+import java.io.File;
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.UUID;
 import javax.xml.bind.JAXBElement;
 import org.joda.time.DateTime;
+
+import br.com.t2software.tt.crypto.SignXML;
+import br.com.t2software.tt.sncm.SncmConnectionFactory;
 import br.com.t2software.tt.util.TransformXML;
 import br.gov.anvisa.sncm.v1_00.Activation;
 import br.gov.anvisa.sncm.v1_00.Dui;
@@ -15,11 +20,23 @@ import br.gov.anvisa.sncm.v1_00.StakeholderId;
 
 public class SncmSample {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		System.out.println("Hello SNCM SDK Samples");
+		
 		String xmlActivation = generateMsgEvtInActiv();
+		
 		System.out.println(xmlActivation);
+		
+		String certificatePath = "<path to certificate>";
+		String certificatePassword = "<certificate password>";
+		String certificateAlias = "<certificate alias>";
+		
+		String signedXML = SignXML.signFile(xmlActivation, certificatePath, certificatePassword, certificateAlias);
+		
+		String response = SncmConnectionFactory.getEvtIn().loadClientCertificate(certificatePath).setCertificatePassword(certificatePassword).submitEvent(signedXML);
+		
+		System.out.println(response);
 	}
 	
 	public static String generateMsgEvtInActiv() {
@@ -59,11 +76,9 @@ public class SncmSample {
 		for (int i = 0; i < 2; i++) {
 
 			Dui d = new ObjectFactory().createDui();
-			//d.setExp(TransformXML.convertDateExp(new Date()));
 			d.setExp(TransformXML.convertDateOnlyMonth(getDate(+360)));
 			d.setGtin("03663502000045");
 			d.setLot("LOTE");
-			// d.setSerl("0101010100101"+i);
 			d.setSerl(getUID());
 
 			activ.getDuiOrCompDui().add(d);
