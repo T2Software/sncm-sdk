@@ -11,12 +11,14 @@ import org.joda.time.DateTime;
 import br.com.t2software.tt.crypto.SignXML;
 import br.com.t2software.tt.sncm.SncmConnectionFactory;
 import br.com.t2software.tt.util.TransformXML;
-import br.gov.anvisa.sncm.v1_00.Activation;
+import br.gov.anvisa.sncm.v1_00.ActivationEvent;
 import br.gov.anvisa.sncm.v1_00.Dui;
 import br.gov.anvisa.sncm.v1_00.Events;
+import br.gov.anvisa.sncm.v1_00.Membro;
 import br.gov.anvisa.sncm.v1_00.MsgEvtIn;
 import br.gov.anvisa.sncm.v1_00.ObjectFactory;
-import br.gov.anvisa.sncm.v1_00.StakeholderId;
+
+
 
 public class SncmSample {
 
@@ -47,33 +49,32 @@ public class SncmSample {
 	public static String generateMsgEvtInActiv() {
 
 		// Creating the MsgEvtIn
-		MsgEvtIn evtin = new ObjectFactory().createMsgEvtIn();
-
-		UUID uuid = UUID.randomUUID();
-
-		evtin.setDocId(uuid.toString().replace("-", "").toUpperCase().substring(0, 20));
-
+		MsgEvtIn evtin = new MsgEvtIn();
+		evtin.setDocId(getUUID());		
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-
+		
 		evtin.setCcTime(TransformXML.convertDate(new Date()));
 
 		evtin.setVer("1.00");
 		evtin.setLc("pt-BR");
 		evtin.setEnv(2);
-
-		StakeholderId declarant = new ObjectFactory().createStakeholderId();
+				
+		Membro declarant = new Membro();
 		declarant.setCnpj("53056057000179");
 
 		evtin.setDeclarant(declarant);
 		evtin.setMbrAgt("13042274000195");
 		evtin.setUsrAgt("T2 Software S.A - V1.0");
+		//evtin.setCcTime(null);
 
 		// Creating the events
 
-		Activation activ = new ObjectFactory().createActivation();
+		//Creating activation
+		ActivationEvent activ = new ActivationEvent();
 		UUID uuid2 = UUID.randomUUID();
-		activ.setEvtNotifId(uuid2.toString().replace("-", "").toUpperCase().substring(0, 20));
+		activ.setEvtNotifId(getUUID());
 		activ.setPastTime(TransformXML.convertDate(getDate(-30)));
+		activ.setRealTime("true");
 		activ.setImport(false);
 
 		// Creating the units
@@ -84,29 +85,25 @@ public class SncmSample {
 			d.setExp(TransformXML.convertDateOnlyMonth(getDate(+360)));
 			d.setGtin("03663502000045");
 			d.setLot("LOTE");
-			d.setSerl(getUID());
+			d.setSerl(getUUID());
 
 			activ.getDuiOrCompDui().add(d);
 		}
 
-		JAXBElement<Activation> jbeact = new ObjectFactory().createEventsActiv(activ);
-
-		Events evts = new ObjectFactory().createEvents();
-
-		evts.getActivOrShptOrRec().add(jbeact);
-
+		Events evts = new Events();
+		evts.getActivOrShptOrRec().add(activ);		
 		evtin.setEvts(evts);
+
+
 
 		String xml = TransformXML.getObjectToXml(MsgEvtIn.class, evtin);
 
 		return xml;
 	}
 	
-	private static String getUID() {
+	private static String getUUID() {
 		UUID uuid = UUID.randomUUID();
-
-		String ret = uuid.toString().replace("-", "").substring(0, 20).toUpperCase();
-		return ret;
+		return uuid.toString().replace("-", "").toUpperCase().substring(0, 20);
 	}
 
 	private static Date getDate(int days) {
