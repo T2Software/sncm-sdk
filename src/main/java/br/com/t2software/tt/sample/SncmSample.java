@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.xml.bind.JAXBElement;
 import org.joda.time.DateTime;
 
+import br.com.t2software.tt.SDKConfigurator;
 import br.com.t2software.tt.crypto.SignXML;
 import br.com.t2software.tt.sncm.SncmConnectionFactory;
 import br.com.t2software.tt.util.TransformXML;
@@ -25,6 +26,9 @@ public class SncmSample {
 	public static void main(String[] args) throws Exception {
 		
 		System.out.println("Hello SNCM SDK Samples");
+		
+		// Start the configuration of the SDK
+		SDKConfigurator.configure();
 		
 		// Generate the SNCM Activation Message
 		String xmlActivation = generateMsgEvtInActiv();
