@@ -29,6 +29,7 @@ public class SncmSample {
 		
 		// Start the configuration of the SDK
 		SDKConfigurator.configure();
+		SDKConfigurator.getInstance().setCertpath("c:\\tmp\\cert");
 		
 		// Generate the SNCM Activation Message
 		String xmlActivation = generateMsgEvtInActiv();
