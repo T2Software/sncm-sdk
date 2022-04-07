@@ -1,5 +1,5 @@
 
-# Pharmatrack SNCM SDK - Exemplos
+# Pharmatrack SNCM SDK BETA - Exemplos
 
 Pharmatrack SNCM SDK é um conjunto de funções em formato de um SDK Java que acelera o desenvolvimento de aplicações conectadas ao Sistema Nacional de Controle de Medicamentos da ANVISA.
 Este SDK é mantido pela T2 Software
@@ -84,3 +84,8 @@ Este SDK é mantido pela T2 Software
 		// Print the response - Demo Only
 		System.out.println(response);
 ```
+
+[T2]: <https://www.t2software.com.br>
+
+Para ter acesso ao SDK, preencha o formulário abaixo.
+https://docs.google.com/forms/d/e/1FAIpQLSfYRd4zleUghf9khCsPMwy0UCn3URkO_kmcOjiIwffUu5lOaQ/viewform
