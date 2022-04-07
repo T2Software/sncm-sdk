@@ -10,6 +10,7 @@ Este SDK é mantido pela T2 Software
 - Geração de Eventos de Expedição no Padrão XML do SNCM
 - Geração de Eventos de Recebimento no Padrão XML do SNCM
 - Geração de Eventos de Finalização no Padrão XML do SNCM
+- Validação de todas as mensagens de acordo com o XSD
 - Assinatura dos Eventos utilizando certificado Digital ICP Brasil
 - Transmissão usando autenticação mutua SSL com certificado Digital ICP Brasil
 
@@ -28,13 +29,13 @@ Este SDK é mantido pela T2 Software
 
 		evtin.setVer("1.00");
 		evtin.setLc("pt-BR");
-		evtin.setEnv(2);
+		evtin.setEnv(1);
 				
 		Membro declarant = new Membro();
-		declarant.setCnpj("53056057000179");
+		declarant.setCnpj("00056000000179");
 
 		evtin.setDeclarant(declarant);
-		evtin.setMbrAgt("13042274000195");
+		evtin.setMbrAgt("00000274000000");
 		evtin.setUsrAgt("T2 Software S.A - V1.0");
 		//evtin.setCcTime(null);
 
