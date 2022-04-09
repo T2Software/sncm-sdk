@@ -86,6 +86,73 @@ Este SDK é mantido pela T2 Software
 		System.out.println(response);
 ```
 
+### Dependências do Maven
+Pode ser necessário adcionar as dependências abaixo no pom.xml
+
+```xml
+<dependency>
+	<groupId>log4j</groupId>
+	<artifactId>log4j</artifactId>
+	<version>1.2.17</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.httpcomponents</groupId>
+	<artifactId>httpclient</artifactId>
+	<version>4.4</version>
+</dependency>
+<dependency>
+	<groupId>commons-io</groupId>
+	<artifactId>commons-io</artifactId>
+	<version>2.8.0</version>
+</dependency>
+<dependency>
+	<groupId>commons-codec</groupId>
+	<artifactId>commons-codec</artifactId>
+	<version>1.11</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.tika</groupId>
+	<artifactId>tika-parsers</artifactId>
+	<version>1.17</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-text</artifactId>
+	<version>1.9</version>
+</dependency>
+<dependency>
+	<groupId>xml-security</groupId>
+	<artifactId>xmlsec</artifactId>
+	<version>1.3.0</version>
+</dependency>
+<dependency>
+	<groupId>org.bouncycastle</groupId>
+	<artifactId>bcprov-ext-jdk16</artifactId>
+	<version>1.46</version>
+</dependency>
+<dependency>
+	<groupId>javax.xml.bind</groupId>
+	<artifactId>jaxb-api</artifactId>
+	<version>2.3.1</version>
+</dependency>
+<dependency>
+	<groupId>com.sun.xml.bind</groupId>
+	<artifactId>jaxb-core</artifactId>
+	<version>3.0.1</version>
+</dependency>
+<dependency>
+	<groupId>com.sun.xml.bind</groupId>
+	<artifactId>jaxb-impl</artifactId>
+	<version>2.3.1</version>
+</dependency>
+<dependency>
+	<groupId>javax.activation</groupId>
+	<artifactId>activation</artifactId>
+	<version>1.1.1</version>
+</dependency>
+```
+
+
 [T2]: <https://www.t2software.com.br>
 
 Para ter acesso ao SDK, preencha o formulário abaixo.
